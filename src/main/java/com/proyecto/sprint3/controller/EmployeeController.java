@@ -12,7 +12,7 @@ import java.util.Date;
 public class EmployeeController {
     @GetMapping("/employee")
     public String generarEmployee(){
-        Employee miEmployee = new Employee(789L, "ingjuanmasuarez@gmail.com", new Profile(), Enum_RolName.Admin, new Enterprise(), new ArrayList<Transaction>(), new Date(), new Date());
+        Employee miEmployee = new Employee(789L, "mmontealegrer@gmail.com", new Profile(), Enum_RolName.Admin, new Enterprise(), new ArrayList<Transaction>(), new Date(), new Date());
         return miEmployee.toString();
     }
 }

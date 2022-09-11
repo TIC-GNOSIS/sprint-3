@@ -10,7 +10,7 @@ import java.util.Date;
 public class TransactionController {
     @GetMapping("/transaction")
     public String generarTransaction(){
-        Transaction miTransaction = new Transaction(456L, "Pago de nomina", 5000000, new Employee(), new Enterprise(), new Date(), new Date());
+        Transaction miTransaction = new Transaction(786L, "Pago arriendo", 1500000, new Employee(), new Enterprise(), new Date(), new Date());
         return miTransaction.toString();
     }
 }
