@@ -22,12 +22,12 @@ public class EnterpriseService {
         repositorio.save(empresa);
     }
 
-    public Enterprise buscarEmpresaPorId(long id){
+    public Enterprise buscarEmpresaPorId(Long id){
         return repositorio.findById(id).get();
 
     }
 
-    public void eliminarEmpresa(long id){
+    public void eliminarEmpresa(Long id){
         repositorio.deleteById(id);
     }
 }

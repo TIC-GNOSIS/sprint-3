@@ -21,12 +21,12 @@ public class EmployeeService {
         repositorio.save(empleado);
     }
 
-    public Employee buscarEmpleadoPorId(long id){
+    public Employee buscarEmpleadoPorId(Long id){
         return repositorio.findById(id).get();
 
     }
 
-    public void eliminarEmpleado(long id){
+    public void eliminarEmpleado(Long id){
         repositorio.deleteById(id);
     }
 }

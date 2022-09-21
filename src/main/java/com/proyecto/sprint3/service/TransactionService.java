@@ -23,12 +23,12 @@ public class TransactionService {
         repositorio.save(Movimientos);
     }
 
-    public Transaction buscarMovimientosPorId(long id){
+    public Transaction buscarMovimientosPorId(Long id){
         return repositorio.findById(id).get();
 
     }
 
-    public void eliminarMovimientos(long id){
+    public void eliminarMovimientos(Long id){
         repositorio.deleteById(id);
     }
 }

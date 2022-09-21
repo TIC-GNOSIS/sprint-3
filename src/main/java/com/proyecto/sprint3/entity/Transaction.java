@@ -1,52 +1,29 @@
 package com.proyecto.sprint3.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import javax.persistence.*;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "transaction")
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "concept", nullable = false)
-    private String concept;
+    private Float montoDelMovimiento;
+    private String conceptoDelMovimiento;
 
-    @Column(name = "amount", nullable = false)
-    private float amount;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
-    @ManyToOne
-    @JoinColumn(name = "enterprise_id")
-    private Enterprise enterprise;
-
-    @Column(name = "createdAt")
-    private Date createdAt;
-
-    @Column(name = "updatedAt")
-    private Date updatedAt;
-
-    public Transaction(){
+    public Transaction() {
 
     }
 
-    @Autowired
-    public Transaction(Long id, String concept, float amount, Employee employee, Enterprise enterprise, Date createdAt, Date updatedAt) {
+    public Transaction(Long id, Float montoDelMovimiento, String conceptoDelMovimiento) {
         this.id = id;
-        this.concept = concept;
-        this.amount = amount;
-        this.employee = employee;
-        this.enterprise = enterprise;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.montoDelMovimiento = montoDelMovimiento;
+        this.conceptoDelMovimiento = conceptoDelMovimiento;
     }
 
     public Long getId() {
@@ -57,64 +34,28 @@ public class Transaction {
         this.id = id;
     }
 
-    public String getConcept() {
-        return concept;
+    public Float getMontoDelMovimiento() {
+        return montoDelMovimiento;
     }
 
-    public void setConcept(String concept) {
-        this.concept = concept;
+    public void setMontoDelMovimiento(Float montoDelMovimiento) {
+        this.montoDelMovimiento = montoDelMovimiento;
     }
 
-    public float getAmount() {
-        return amount;
+    public String getConceptoDelMovimiento() {
+        return conceptoDelMovimiento;
     }
 
-    public void setAmount(float amount) {
-        this.amount = amount;
+    public void setConceptoDelMovimiento(String conceptoDelMovimiento) {
+        this.conceptoDelMovimiento = conceptoDelMovimiento;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    public void  montos(){
+        if(montoDelMovimiento < 0){
+            System.out.println("monto positivo");
+        }else{
+            System.out.println("monto negativo");
+        }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Enterprise getEnterprise() {
-        return enterprise;
-    }
-
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "id=" + id +
-                ", concept='" + concept + '\'' +
-                ", amount=" + amount +
-                ", employee=" + employee +
-                ", enterprise=" + enterprise +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
     }
 }

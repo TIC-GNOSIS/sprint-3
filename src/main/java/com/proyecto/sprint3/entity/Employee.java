@@ -1,61 +1,35 @@
 package com.proyecto.sprint3.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import com.proyecto.sprint3.Enum.Enum_RolName;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 @Entity
 @Table(name = "employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", nullable = false, unique = true, length = 50)
-    private String email;
 
-    @OneToOne
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private Enum_RolName role;
-
-    @ManyToOne
-    @JoinColumn(name = "enterprise_id")
-    private Enterprise enterprise;
-
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
-    private List<Transaction> transactions = new ArrayList<>();
-
-    @Column(name = "createdAt")
-    private Date createdAt;
-
-    @Column(name = "updatedAt")
-    private Date updatedAt;
+    private String nombre;
+    private String correoElectronico;
+    private String empresa;
+    private String role;
 
     public Employee(){
 
     }
 
-    @Autowired
-    public Employee(Long id, String email, Profile profile, Enum_RolName role, Enterprise enterprise, List<Transaction> transactions, Date createdAt, Date updatedAt) {
+    public Employee(Long id, String nombre, String correoElectronico, String empresa, String role) {
         this.id = id;
-        this.email = email;
-        this.profile = profile;
+        this.nombre = nombre;
+        this.correoElectronico = correoElectronico;
+        this.empresa = empresa;
         this.role = role;
-        this.enterprise = enterprise;
-        this.transactions = transactions;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Long getId() {
@@ -66,75 +40,38 @@ public class Employee {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
-    public Enum_RolName getRole() {
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Enum_RolName role) {
+    public void setRole(String role) {
         this.role = role;
     }
-
-    public Enterprise getEnterprise() {
-        return enterprise;
-    }
-
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", profile=" + profile +
-                ", role=" + role +
-                ", enterprise=" + enterprise +
-                ", transactions=" + transactions +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
-
-
 }
+
+
+

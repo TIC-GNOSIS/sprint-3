@@ -11,16 +11,17 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class TransactionController {
 
     @Autowired
     private TransactionService servicio;
+
     @GetMapping("/transaction")
-    public String generarTransaction(){
-        Transaction miTransaction = new Transaction(786L, "Pago arriendo", 1500000, new Employee(), new Enterprise(), new Date(), new Date());
-        return miTransaction.toString();
+    public List<Transaction>generarTransaction(){
+        return servicio.listarMovimientos();
     }
 
     @PostMapping("/transaction")
@@ -28,14 +29,14 @@ public class TransactionController {
         servicio.guardarMovimientos(transaction);
     }
 
-    @PutMapping("/transaction")
+    @PatchMapping("/transaction/{id}")
     public ResponseEntity<?> actualizarTransaction(@RequestBody Transaction transaction, @PathVariable Long id){
         Transaction employeeExistente = servicio.buscarMovimientosPorId(id);
         servicio.guardarMovimientos(transaction);
         return new ResponseEntity<Transaction>(transaction, HttpStatus.OK);
     }
 
-    @DeleteMapping("/transaction")
+    @DeleteMapping("/transaction/{id}")
     public void eliminarTransaction(@PathVariable Long id){
         servicio.eliminarMovimientos(id);
     }
